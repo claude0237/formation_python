@@ -1,0 +1,123 @@
+NOTES SUR COURS PYTHONS
+************************
+
+1. LES OPERATIONS SUR LES CHAINES DE CARACTERES
+..............................................
+
+replace() : fonction de remplacement de caracteres dans une chaine
+ "bonjour".replace("jour","soir")
+ -> bonsoir
+ "bonjour bonjour".replace("jour","soir")
+ -> bonsoir bonsoir
+ bonjour bonjour".replace("jour","soir").replace(" ","") #deux instructions en une ligne
+ -> bonsoirbonsoir
+ 
+ strip() : methode strip enleve les caracteres specifies en parametres, si rien n'est specifies
+ # elle agira juste sur les espaces en debut et fin de la chaines 
+ " bonjour ".strip()
+ -> "bonjour"
+ "  bonjour  ".strip("  ujor") # on anayse partant de la gauche jusqu'au caractere qui n'est pas specifier 
+ # en parametres dans strip(), puis on reprend partant de la droite
+ --> "bon"
+ rstrip() : methode strip() mais qui n'analyse que partant de la droite
+ lstrip() : methode strip() mais qui n'analyse que partant de la gauche
+ 
+ split() et join(): methode de separation et de jointure de chaine de caractere et retour dans une liste
+ "1, 2, 3, 4, 5".split(", ")
+ ->['1', '2', '3', '4', '5']
+ (, ).join("1, 2, 3, 4, 5".split(", "))  // utilisation conjointe pour retomber sur nos pieds
+ -> '1, 2, 3, 4, 5'
+ "_".join(['1', '2', '3'])
+ ->'1_2_3
+ 
+ zfill() : remplissage avec des zero
+  "9".zfill(4) # remplissage avec des zero pour faire 4 caracteres, il ne marche qu'avec des chaines
+-> '0009'
+
+for i in range(100):      ## exemple de fonction por avoir des nombre de meme longueur
+    print(str(i).zfill(4))
+
+#les methodes commencants par un "is", verifient le remplissage de condition
+islower(): methode de verification si une chaine est en miniscule
+"bonjour".islower()
+-> true
+"bonjour tout le monde".istitle()
+->False
+"50".isdigit() # verifie si une chaine est un nombre
+-> true
+
+count() : compte le nombre de caractere
+"bonjour le jour".count("jour")
+-> 2
+"bonjour le jour".count(" jour")
+-> 1
+
+find() et index() ## cherche la position d'un mot ou une suite de caractere dans une chaine
+"Bonjour le jour".index("our")
+->4
+# au cas ou rien est trouve, find() renvera -1, tandis que index() renvera une erreure
+
+endswith() # verifie qu'une chaine de caractere se termine par...
+startswith() # verifie qu'une chaine de caractere commence par...
+
+2. LES OPERATEURS
+..................
+
+//   # division entiere
+**   # puissance
++= 1  #  incrementation de la variable i de 1
+==  # egale ab
+!= #different de 
+
+3. FORMATAGE
+................
+
+f-string() : concatenation des elements dans une chaine de caractere (a partir python3.6 ou superieur) 
+a = 5
+b = 10
+f"La multiplication de {a} par {b} est egale a {a * b}"
+-> "La multiplication de 5 par 10 est egale a 50"
+
+format() # equivalent de fstring() pour les version python en dessous de 3.6
+age=26
+age1=20
+phrase = "J'ai {toto} ans".format(toto=age)
+-> "J'ai 26 ans"
+phrase1 = "J'ai {age} ans, {age1}ce n'est pas tant d'annees".format(age,age1)
+
+# pour resumer le formatage avec exemple
+protocole = "https://"
+nom_du_site = "Docstring"
+extension = "fr"
+
+# avec operateur +
+url = protocole + "www" + nom_du_site + "." + extension
+
+#avec la methode format
+url = "{}www.{}.{}".format(protocole, nom_du_site, extension)
+url = "{protocole}www.{domaine}.{extension}".format(protocole=protocole, domaine=nom_du_site, extension=extension)
+
+#Avec les f-string
+url = f"{protocole}www.{nom_du_site}.{extension}"
+
+4. LES STRUCTURES CONDITIONNELLES
+
+age = 20
+if age >= 18:
+    majeur=True
+    print("Vous etes majeur")
+elif age < 18:
+    majeur=False
+    print("Vous etes mineur")
+ ------------------------------------  ## ceci peux encore s'ecrire comme suivant
+ 
+ age = 20
+ majeur=True if age >= 18 else False  ## ceci est valide juste pour la structure if else et avec une seule valeur a verifier
+ -------------------------------------------
+ 
+ if not utilisateur == "admin":   ## si utilisateur n'est pas egale a admin
+    print("Acces refuse")
+    
+5. LES ERREURS
+................
+SyntaxError
